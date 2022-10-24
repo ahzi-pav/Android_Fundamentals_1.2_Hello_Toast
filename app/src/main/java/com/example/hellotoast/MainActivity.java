@@ -1,5 +1,6 @@
 package com.example.hellotoast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -21,6 +22,17 @@ public class MainActivity extends AppCompatActivity {
         mShowCount = findViewById(R.id.show_count);
 
         count = 0;
+
+        if (savedInstanceState != null) {
+            count = savedInstanceState.getInt("count_number");
+            mShowCount.setText(String.valueOf(count));
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("count_number", count);
     }
 
     public void showToast(View view) {
